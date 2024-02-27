@@ -10,7 +10,13 @@
 }
 
 .small-font {
-    font-size: 12;
+    font-size: small;
 }
+
+.big-font {
+    font-size: large;
+}
+
+
 
 
