@@ -1,3 +1,7 @@
+<?php
+    header("Location: test.php")
+?>
+    
 <!doctype html>
 <html lang="en">
 
