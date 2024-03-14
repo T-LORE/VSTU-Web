@@ -4,18 +4,17 @@ class Database {
     private $connection;
 
     public function __construct($ip, $username, $password, $dbname) {       
-        if (self::$instance === null) {
-            $this->connection = new mysqli($ip, $username, $password, $dbname);
-
-            if ($this->connection->connect_error != null) {
-                die("Connection failed: " . $this->connection->connect_error);
-            } else {
+        if (self::$instance === null) {    
+            try{
+                $this->connection = new PDO("mysql:host=$ip;dbname=$dbname", $username, $password);
                 self::$instance = $this;
-            }  
+            } catch (PDOException $e) {
+                die("Connection failed");
+            }
         }     
     }
     
-    public function getInstance() {
+    public static function getInstance() {
         
         return self::$instance;
     }
