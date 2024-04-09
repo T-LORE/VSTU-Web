@@ -1,13 +1,12 @@
 <?php
-require_once 'dbconnection.php';
+require_once ($_SERVER['DOCUMENT_ROOT'].'/LAB_3/core.php');
 
-$ip = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hairdressing_salon";
+if(empty($_SESSION['USER_ID'])){
+    header("location: login.php");
+    exit;
+}
 
-$db = new Database($ip, $username, $password, $dbname );
-$connection = Database::getInstance()->getConnection();
+$connection = Database::connection();
 
 $halls = [];
 $sql = "SELECT * FROM halls";
@@ -63,4 +62,3 @@ if (count($_GET) > 0) {
 $result = $connection->prepare($sql);
 $result->execute($binds);   
 $services = $result->fetchAll();
-

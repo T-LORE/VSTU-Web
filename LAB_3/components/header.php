@@ -1,8 +1,31 @@
-<!-- Header -->
+<?php
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/core.php');
+$userLoggedIn = isset($_SESSION['USER_ID']);
+$userdata = UserLogic::current();
+$userEmail = count($userdata) > 0? $userdata['email'] : '';
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<div class="container-xxl px-4">   
+    <!-- Header -->
         <!-- First header -->  
         <div class="row border-bottom">  
             <!--  Left block -->
             <div class="col-6 d-flex align-items-center my-2 ">
+                <a href="index.php" class="fw-bold mx-2 text-decoration-none text-dark fs-5">Главная</a>
                 <div class="d-flex align-items-center"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
@@ -24,7 +47,18 @@
                                 d="M14,17H2a2,2,0,0,1-2-2V8A2,2,0,0,1,2,6H3V4A4,4,0,0,1,7,0H9a4,4,0,0,1,4,4V6h1a2,2,0,0,1,2,2v7A2,2,0,0,1,14,17ZM11,4A2,2,0,0,0,9,2H7A2,2,0,0,0,5,4V6h6V4Zm3,4H2v7H14V8ZM8,9a1,1,0,0,1,1,1v2a1,1,0,0,1-2,0V10A1,1,0,0,1,8,9Z">
                             </path>
                         </svg>
-                        <div class="small-font">Войти</div>
+                        
+                        <?php
+                            if ($userLoggedIn) {
+                                echo '<div class="d-flex mx-2 align-items-center">';
+                                echo '<div class="mx-2">' . htmlspecialchars($userEmail) . '</div>';
+                                echo '<a href="signout.php" class="btn btn-primary mx-2">Выйти</a>';
+                                echo '</div>';
+                            } else {
+                                echo '<a href="login.php" class="btn btn-primary mx-2">Войти</a>';
+                                echo '<a href="register.php" class="btn btn-primary mx-2">Зарегистрироваться</a>';
+                            }
+                        ?>
                     </div>
                 </div>
                 <div class="d-flex mx-2 align-items-center">
