@@ -7,11 +7,7 @@
         $result = $connection->query($sql);
         $halls = $result->fetchAll();
         
-        $data = [
-            'halls' => $halls,
-        ];
-        
         header('Content-Type: application/json');
         header('Content-Disposition: attachment; filename="data.json"');
-        echo json_encode($data);
+        echo json_encode($halls);
     }
