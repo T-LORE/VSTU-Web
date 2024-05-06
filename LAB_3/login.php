@@ -18,8 +18,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-
-<!-- main container -->
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/header.php')?>
 <div class="container-xxl px-4">   
     <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/loginform.php')?>

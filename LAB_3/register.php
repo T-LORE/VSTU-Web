@@ -20,8 +20,7 @@ $Rh = isset($_POST['Rh']) ? $_POST['Rh'] : null;
 
 ?>
   
-<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/header.php')?>
-        
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/header.php')?>  
         <?php if (isset($_GET['success'])): ?>
             <div class="alert alert-success my-5" role="alert">
                 Регистрация прошла успешно
