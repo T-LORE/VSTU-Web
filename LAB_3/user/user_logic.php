@@ -43,7 +43,12 @@ class UserLogic
         if (!password_verify($password, $user['password'])) {
             UserAttempts::create($id, date('Y-m-d H:i:s'));
             $attempts = UserAttempts::get_by_id($id);
-            return 'Неверный пароль, осталось попыток: ' . (3 - count($attempts));
+            if (3 - count($attempts) == 0) {
+                return 'Неверный пароль, у вас кончились попытки входа, попробуйте через час';
+            } else {
+                return 'Неверный пароль, осталось попыток: ' . (3 - count($attempts));
+            }
+            
         }
 
 
