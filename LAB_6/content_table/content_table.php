@@ -1,9 +1,15 @@
 <?php
 class ContentTable
 {
-    public static function create()
+    public static function add($content)
     {
-        //TODO
+        $query = Database::prepare("INSERT INTO services (name, id_hall, cost, description, image_path) VALUES (:name, :id_hall, :cost, :description, :image_path)");
+        $query->bindValue(":name", $content->name);
+        $query->bindValue(":id_hall", $content->id_hall);
+        $query->bindValue(":cost", $content->cost);
+        $query->bindValue(":description", $content->description);
+        $query->bindValue(":image_path", $content->image_path);
+        $query->execute();
         
     }
 

@@ -39,4 +39,5 @@
     </tbody>
   </table>
 
+  <a class="btn btn-primary" href="add_content.php" role="button">Добавить услугу</a>
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/footer.php')?>

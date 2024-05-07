@@ -1,5 +1,5 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/core.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/core.php');
 
 if(!empty($_SESSION['USER_ID'])){
     header("location: index.php");
