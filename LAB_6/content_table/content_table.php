@@ -4,15 +4,7 @@ class ContentTable
     public static function create()
     {
         //TODO
-        $query = Database::prepare(
-            "INSERT INTO users (email, fio, birthdate, address, gender, interests, vk, blood_type, Rh, password)" .
-            "VALUES (:email, :fullname, :birthdate, :address, :gender, :interests, :vk, :blood_type, :Rh, :password)"
-        );
         
-
-        if (!$query->execute()) {
-            throw new PDOException("При добавлении пользователя возникла ошибка");
-        }
     }
 
     public static function get_by_id(int $service_id): array
@@ -40,5 +32,12 @@ class ContentTable
 
         return $query->fetchAll();
         
+    }
+
+    public static function delete (int $service_id)
+    {
+        $query = Database::prepare("DELETE FROM services WHERE id = :service_id");
+        $query->bindValue(":service_id", $service_id);
+        $query->execute();
     }
 }

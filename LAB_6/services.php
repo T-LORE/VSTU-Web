@@ -24,8 +24,16 @@
             <td><?= htmlspecialchars($service["hall_number"]) ?></td>
             <td><?= htmlspecialchars($service["description"]) ?></td>
             <td><?= htmlspecialchars($service["cost"]) ?> руб.</td>
-            <td><a class="btn btn-primary" type="button" id="edit" href="/LAB_6/edit.php?id=<?= htmlspecialchars($service["id"]) ?>">Редактировать</a></td>
-            <td><a class="btn btn-danger delete" data-itemId="<?= htmlspecialchars($service["id"]) ?>">Удалить</a></td>
+            
+            <!-- форма с пост запросом для кнопки "редактировать" -->
+            <td><form action="edit_content.php" method="post">
+                <input type="hidden" name="content_id" value="<?= $service['id'] ?>">
+                <button type="submit" class="btn btn-primary">Редактировать</button>
+            </form></td>
+            <td><form action="delete_content.php" method="post">
+                <input type="hidden" name="content_id" value="<?= $service['id'] ?>">
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

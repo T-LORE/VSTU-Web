@@ -1,9 +1,12 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/core.php')?>
-<?php $service = ContentTable::get_by_id($_GET['id']); ?>
+<?php 
+    $service = ContentTable::get_by_id($_POST['content_id']);
+    
+?>
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/header.php')?>
 <div class="container-xxl px-4">
     <h1>Редактирование услуги</h1>
-    <form action="edit.php" method="post">
+    <form action="update_content.php" method="POST">
         <input type="hidden" name="id" value="<?= $service['id'] ?>">
         <div class="row mt-3">
             <div class="col-md-6">
