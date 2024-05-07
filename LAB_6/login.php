@@ -1,5 +1,5 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/core.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/core.php');
 
 if(!empty($_SESSION['USER_ID'])){
     header("location: index.php");
@@ -18,8 +18,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/header.php')?>
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/header.php')?>
 <div class="container-xxl px-4">   
-    <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/loginform.php')?>
+    <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/loginform.php')?>
 </div>
-<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/footer.php')?>
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/footer.php')?>

@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/LAB_3/core.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/LAB_6/core.php';
 class ResourceManager
 {
     public static function getImage($path)
@@ -9,10 +9,10 @@ class ResourceManager
 
         if (!Userlogic::isAuthorized()) {
             
-            return readfile($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/Assets/placeholder.jpg');
+            return readfile($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/Assets/placeholder.jpg');
         }
 
-        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/LAB_3/Assets//' . $path;
+        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/LAB_6/Assets//' . $path;
         
         header('Content-Length: ' . filesize($imagePath));
         readfile($imagePath);

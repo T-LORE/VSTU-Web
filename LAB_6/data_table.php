@@ -1,8 +1,8 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/data_table_logic.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/data_table_logic.php');
 ?>
 
-<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/header.php')?>
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/header.php')?>
 
   <!-- Фильтр -->
   <form method="GET" class="px-2 py-2 mt-4">
@@ -73,4 +73,4 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/data_table_logic.php');
   </table>
 </div>
 
-<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/footer.php')?>
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/footer.php')?>

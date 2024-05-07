@@ -1,5 +1,5 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/core.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/core.php');
 $userLoggedIn = isset($_SESSION['USER_ID']);
 $userdata = UserLogic::current();
 $userEmail = count($userdata) > 0? $userdata['email'] : '';

@@ -1,4 +1,4 @@
-<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/header.php')?>    
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/header.php')?>    
     <!-- main container -->
         <!-- Second header -->
         <div class="row align-items-center ">
@@ -403,5 +403,5 @@
         </div>
     </div>
 
-<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_3/components/footer.php')?>
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/footer.php')?>
 
