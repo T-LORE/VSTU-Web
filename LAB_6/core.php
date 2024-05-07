@@ -21,6 +21,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/LAB_6/content_table/content_logic.php'
 require_once ($_SERVER['DOCUMENT_ROOT'].'/LAB_6/content_table/content_table.php');
 
 // Таблица залов
+require_once ($_SERVER['DOCUMENT_ROOT'].'/LAB_6/hall_table/hall.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/LAB_6/hall_table/hall_action.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/LAB_6/hall_table/hall_logic.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/LAB_6/hall_table/hall_table.php');

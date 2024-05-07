@@ -2,6 +2,7 @@
 <?php $services = ContentTable::get_all(); ?>
 
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/header.php')?>
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/tables_navigation.php')?>
   
     <table class="table table-striped">
     <thead>
