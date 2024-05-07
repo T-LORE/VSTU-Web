@@ -46,4 +46,16 @@ class ContentTable
         $query->bindValue(":service_id", $service_id);
         $query->execute();
     }
+
+    public static function edit($content)
+    {
+        $query = Database::prepare("UPDATE services SET name = :name, id_hall = :id_hall, cost = :cost, description = :description, image_path = :image_path WHERE id = :id");
+        $query->bindValue(":name", $content->name);
+        $query->bindValue(":id_hall", $content->id_hall);
+        $query->bindValue(":cost", $content->cost);
+        $query->bindValue(":description", $content->description);
+        $query->bindValue(":image_path", $content->image_path);
+        $query->bindValue(":id", $content->id);
+        $query->execute();
+    }
 }

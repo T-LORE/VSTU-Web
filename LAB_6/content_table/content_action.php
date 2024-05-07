@@ -12,6 +12,18 @@ class ContentAction
 
     public static function edit()
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['is_edit']))
+        {
+            $content = new Content();
+            $content->id = $_POST['content_id'];
+            $content->name = $_POST['name'];
+            $content->id_hall = $_POST['id_hall'];
+            $content->cost = $_POST['cost'];
+            $content->description = $_POST['description'];
+            $content->image = $_FILES['image'];
+            $errors = ContentLogic::edit($content);
+            return $errors;
+        }
        
     }
 
