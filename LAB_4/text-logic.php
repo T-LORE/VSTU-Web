@@ -27,6 +27,9 @@ class TextWorker
 
     public static function task8($text)
     {
+        // str_replace('итд', 'и т.д.', $text);
+        // str_replace('итп', 'и т.п.', $text);
+
         $pattern = '/\bи\s*т[.*|\s*]*(д|п)\b[.*|\s*]*/u';
         
         $text = preg_replace($pattern, 'и т.$1. ', $text);
