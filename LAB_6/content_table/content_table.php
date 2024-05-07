@@ -30,8 +30,8 @@ class ContentTable
     public static function get_all(): array
     {
         $sql = "SELECT services.*, halls.hall_number 
-        FROM services 
-        INNER JOIN halls ON services.id_hall = halls.id";
+            FROM services 
+            LEFT JOIN halls ON services.id_hall = halls.id";
 
         $query = Database::prepare($sql);
         $query->execute();
