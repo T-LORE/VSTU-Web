@@ -57,13 +57,15 @@ class ContentLogic
 
         if ($content->image['error'] !== 0) {
             $errors[] = "Ошибка загрузки изображения";
-        }
+        } else {
+            // проверить что это реально картинка
+            $image_info = getimagesize($content->image['tmp_name']);
+            if ($image_info === false) {
+                $errors[] = "Ошибка загрузки изображения";
+            }
+        }   
 
-        // проверить что это реально картинка
-        $image_info = getimagesize($content->image['tmp_name']);
-        if ($image_info === false) {
-            $errors[] = "Ошибка загрузки изображения";
-        }
+        
 
         return $errors;
     }
