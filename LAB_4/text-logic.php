@@ -19,7 +19,8 @@ class TextWorker
 
     public static function task2($text)
     {
-        $pattern = '/<img.*?src="(.*)".*?>/i';
+        //ссылки картинок
+        $pattern = '/<img.*src="(.*)".*>/iU';
         preg_match_all($pattern, $text, $matches);
         return $matches[1];
     }
@@ -33,19 +34,37 @@ class TextWorker
         return $text;
     }
 
+    private static $id = 0;
+    private static function getId($matches)
+    {
+        self::$id++;
+        return $matches[1] . ' id="image' . self::$id . '">' ;
+    }
+
     public static function task13($text)
     {
-        $pattern = '/<img.*?alt="(.*?)".*?>/i';
+        $result = [];
+        // найти alt тег
+        // дописать id к картинке
+        $pattern = '/(<img.*alt="(.*)".*)>/iU';
         preg_match_all($pattern, $text, $matches);
-        $result = '';
-        for ($i = 0; $i < count($matches[1]); $i++) {
-            $result .= 'Картинка ' . ($i + 1) . ' "' . $matches[1][$i] . '"' . PHP_EOL;
+        $alts = $matches[2];
+        $text = preg_replace_callback($pattern, 'self::getId', $text);
+
+        // создать список
+        $lsit = '<ul>';
+        for ($i = 0; $i < count($alts); $i++) {
+            $lsit .= '<li><a href="#image' . ($i + 1) . '">Картинка ' . ($i + 1) . ' "' . $alts[$i] . '"</a></li>';
         }
+        $lsit .= '</ul>';
+        $result['list'] = $lsit;
+        $result['text'] = $text;
         return $result;
     }
 
     public static function task18($text)
     {
+        $result = $text;
         // $pattern = '/<p>(.*?)<\/p>/i';
         // preg_match_all($pattern, $text, $matches);
         // $words = [];
@@ -64,7 +83,33 @@ class TextWorker
         //         $result = preg_replace('/\b' . $word . '\b/iu', '<mark>' . $word . '</mark>', $result);
         //     }
         // }
-        // return $result;
+        //return $result;
+
+        // используя domdocument Найди все параграфы
+        // $dom = new DOMDocument();
+        // libxml_use_internal_errors(true); // Ignore errors during loading HTML
+        // $dom->loadHTML("\xEF\xBB\xBF" . $text);
+        // libxml_clear_errors(); // Clear any errors that occurred during loading HTML
+        // $paragraphs = $dom->getElementsByTagName('p');
+        // $words = [];
+        // foreach ($paragraphs as $paragraph) {
+        //     $words = array_merge($words, preg_split('/\s+/', $paragraph->textContent));
+        // }
+        // $words = array_map('mb_strtolower', $words);
+        // $words = array_map('trim', $words);
+        // $words = array_filter($words, function ($word) {
+        //     return mb_strlen($word) > 3;
+        // });
+
+        // $words = array_count_values($words);
+        // $result = $text;
+        // print_r($words);
+        // foreach ($words as $word => $count) {
+        //     if ($count > 3) {
+        //         $result = preg_replace('/\b' . $word . '\b/iu', '<mark>' . $word . '</mark>', $result);
+        //     }
+        // }
+        return $result;  
     }
 
     public static function formAnswerHtml($text)
@@ -73,7 +118,7 @@ class TextWorker
         
         $result = '<div class="container">';
 
-         // Картинки
+        // Картинки
         $result .= '<h3>Вывести только картинки из исходного текста</h2>';
         foreach (self::task2($text) as $image) {
             $result .= '<img src="' . $image . '" alt="Image">';
@@ -82,20 +127,22 @@ class TextWorker
 
         // Указатель изображений
         $result .= '<h3>Указатель изображений</h2>';
-        $result .= '<p>' . self::task13($text) . '</p>';
+        $task13 = self::task13($text);
+        $text = $task13['text'];
+        $result .= $task13['list'];
         $result .= '<div class="my-5"></div>';
 
-        // Подсвеченные литературные повторы
-        $result .= '<h3>Подсвеченные литературные повторы</h2>';
-        $result .= '<p>' . self::task18($text) . '</p>';
-        $result .= '<div class="my-5"></div>';
+        // // Подсвеченные литературные повторы
+        //$text = self::task18($text);
 
         // Расстановка точек в сокращениях
+        $text = self::task8($text);
+
+        // введенный текст после преобразований
         $result .= '<div class="row">';
-        $result .= '<h3>Расстановка точек в сокращениях:</h2>';
-        $result .= '<p>' . self::task8($text) . '</p>';
+        $result .= '<h3>Введенный текст после преобразований:</h2>';
+        $result .= '<p>' . $text . '</p>';
         $result .= '<div class="my-5"></div>';
-        $result .= '</div>';
 
 
         $result .= '</div>';
