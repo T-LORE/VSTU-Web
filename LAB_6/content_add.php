@@ -4,15 +4,14 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors = ContentAction::add();
         if (empty($errors)) {
-            header("Location: services.php");
+            header("Location: content_table_view.php");
         }
     }
 ?>
 
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/header.php')?>
-<!-- назад в Таблицу -->
-<a href="services.php" class="btn btn-primary mt-3">Таблица</a>
-<form action="add_content.php" method="POST" enctype="multipart/form-data">
+<a href="content_table_view.php" class="btn btn-primary mt-3">Таблица</a>
+<form action="content_add.php" method="POST" enctype="multipart/form-data">
     <div class="container-xxl px-4">
         <h1>Добавление услуги</h1>
         <div class="row mt-3">
@@ -49,6 +48,7 @@
                 <input type="file" class="form-control" name="image">
             </div>
         </div>
+        <input type="hidden" name="is_add" value="<?= true ?>">
         <div class="row mt-3">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Добавить</button>

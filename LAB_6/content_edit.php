@@ -1,7 +1,7 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/core.php')?>
 <?php 
     if (!isset($_POST['content_id'])) {
-        header("location: services.php");
+        header("location: content_table_view.php");
     }
     $service = ContentTable::get_by_id($_POST['content_id']);
 
@@ -10,13 +10,13 @@
     $errors = ContentAction::edit();
 
     if (isset($errors) && empty($errors)) {
-        header("location: services.php");
+        header("location: content_table_view.php");
     }
 ?>
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/header.php')?>
 <div class="container-xxl px-4">
     <h1>Редактирование услуги</h1>
-    <form action="edit_content.php" method="post" enctype="multipart/form-data">
+    <form action="content_edit.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="content_id" value="<?= $service['id'] ?>">
         <div class="row mt-3">
             <div class="col-md-6">

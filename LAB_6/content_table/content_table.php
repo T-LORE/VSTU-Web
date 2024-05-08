@@ -58,4 +58,18 @@ class ContentTable
         $query->bindValue(":id", $content->id);
         $query->execute();
     }
+
+    public static function get_all_with_hall($hall_id): array
+    {
+        $sql = "SELECT services.*, halls.hall_number 
+            FROM services 
+            LEFT JOIN halls ON services.id_hall = halls.id
+            WHERE halls.id = :hall_id";
+
+        $query = Database::prepare($sql);
+        $query->bindValue(":hall_id", $hall_id);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
 }

@@ -26,13 +26,14 @@
             <td><?= htmlspecialchars($service["description"]) ?></td>
             <td><?= htmlspecialchars($service["cost"]) ?> руб.</td>
             
-            <!-- форма с пост запросом для кнопки "редактировать" -->
-            <td><form action="edit_content.php" method="post">
+            
+            <td><form action="content_edit.php" method="post">
                 <input type="hidden" name="content_id" value="<?= $service['id'] ?>">
                 <button type="submit" class="btn btn-primary">Редактировать</button>
             </form></td>
-            <td><form action="delete_content.php" method="post">
+            <td><form action="content_delete.php" method="post">
                 <input type="hidden" name="content_id" value="<?= $service['id'] ?>">
+                <input type="hidden" name="is_delete" value="<?= true ?>">
                 <button type="submit" class="btn btn-danger">Удалить</button>
             </form></td>
         </tr>
@@ -40,5 +41,5 @@
     </tbody>
   </table>
 
-  <a class="btn btn-primary" href="add_content.php" role="button">Добавить услугу</a>
+  <a class="btn btn-primary" href="content_add.php" role="button">Добавить услугу</a>
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/footer.php')?>

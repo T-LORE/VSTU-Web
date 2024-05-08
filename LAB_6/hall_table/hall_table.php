@@ -3,8 +3,9 @@ class HallTable
 {
     public static function add($hall)
     {
-        $query = Database::prepare("INSERT INTO halls (hall_number) VALUES (:hall_number)");
+        $query = Database::prepare("INSERT INTO halls (hall_number, is_allow_to_delete) VALUES (:hall_number, :is_allow_to_delete)");
         $query->bindValue(":hall_number", $hall->hall_number);
+        $query->bindValue(":is_allow_to_delete", $hall->is_allow_to_delete);
         $query->execute();
         
     }
@@ -41,8 +42,9 @@ class HallTable
 
     public static function edit($hall)
     {
-        $query = Database::prepare("UPDATE halls SET hall_number = :hall_number WHERE id = :id");
+        $query = Database::prepare("UPDATE halls SET hall_number = :hall_number, is_allow_to_delete = :is_allow_to_delete WHERE id = :id");
         $query->bindValue(":hall_number", $hall->hall_number);
+        $query->bindValue(":is_allow_to_delete", $hall->is_allow_to_delete);
         $query->bindValue(":id", $hall->id);
         $query->execute();
     }

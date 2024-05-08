@@ -3,11 +3,25 @@
 
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/header.php')?>
 <?php require_once ($_SERVER['DOCUMENT_ROOT'] . '/LAB_6/components/tables_navigation.php')?>
-  
-    <table class="table table-striped">
+
+<?php
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['error']))
+    {
+        $error = $_GET['error'];
+    }
+?>
+
+<?php if (isset($error)): ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $error ?>
+    </div>
+<?php endif; ?>
+        
+<table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
+        <th>Is allow to delete</th>
         <th>Name</th>
       </tr>
     </thead>
@@ -15,15 +29,17 @@
         <?php foreach ($halls as $hall): ?>
         <tr>
             <td><?= htmlspecialchars($hall["id"]) ?></td>
+            <td> <?= $hall["is_allow_to_delete"] ? "Да" : "Нет" ?></td>
             <td><?= htmlspecialchars($hall["hall_number"]) ?></td>
             
-            <!-- форма с пост запросом для кнопки "редактировать" -->
+            
             <td><form action="hall_edit.php" method="post">
                 <input type="hidden" name="hall_id" value="<?= $hall["id"] ?>">
                 <button type="submit" class="btn btn-primary">Редактировать</button>
             </form></td>
             <td><form action="hall_delete.php" method="post">
                 <input type="hidden" name="hall_id" value="<?= $hall["id"] ?>">
+                <input type="hidden" name="is_delete" value="<?= true ?>">
                 <button type="submit" class="btn btn-danger">Удалить</button>
             </form></td>
         </tr>

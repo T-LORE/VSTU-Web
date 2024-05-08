@@ -3,6 +3,14 @@ class HallLogic
 {
     public static function delete($hall_id)
     {
+        $hall = HallTable::get_by_id($hall_id);
+        if ($hall['is_allow_to_delete'] == 0) {
+            return "Это поле запрещено удалять";
+        }
+        $contents_to_delete = ContentTable::get_all_with_hall($hall_id);
+        foreach ($contents_to_delete as $content) {
+            ContentLogic::delete($content['id']);
+        }
         HallTable::delete($hall_id);
     }
 

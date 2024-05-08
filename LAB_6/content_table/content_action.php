@@ -4,10 +4,12 @@ class ContentAction
 {
     public static function delete()
     {
-        if (isset($_POST['content_id'])) {
-            ContentLogic::delete($_POST['content_id']);
-        }
-        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['is_delete']))
+        {
+            if (isset($_POST['content_id'])) {
+                ContentLogic::delete($_POST['content_id']);
+            }
+        } 
     }
 
     public static function edit()
@@ -29,7 +31,7 @@ class ContentAction
 
     public static function add(): array
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['is_add']))
         {
             $content = new Content();
             $content->name = $_POST['name'];

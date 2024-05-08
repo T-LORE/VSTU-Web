@@ -21,6 +21,14 @@
                 <label for="name">Название:</label>
                 <input type="text" class="form-control" name="hall_number" value="<?= $hall['hall_number'] ?>" placeholder="Имя зала">
             </div>
+        </div>
+        <div class="col-md-6">
+                <label for="is_allow_to_delete">Зал:</label>
+                <select class="form-control" name="is_allow_to_delete">
+                    <option value="0" <?php echo $hall['is_allow_to_delete'] == 0 ? 'selected' : ''; ?>>Нет</option>
+                    <option value="1" <?php echo $hall['is_allow_to_delete'] == 1 ? 'selected' : ''; ?>>Да</option>
+                </select>
+        </div>
         <input type="hidden" name="is_edit" value="true">
         <div class="row mt-3">
             <div class="col-md-12">
